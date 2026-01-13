@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VXCH | Profile</title>
+    <meta name="description" content="Welcome to my profile page">
+    <meta name="theme-color" content="#00ff88">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="VXCH | Profile">
+    <meta property="og:description" content="Welcome to my profile page">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&family=Fira+Code:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon (Silences 404) -->
+    <link rel="icon"
+        href="data:image/x-icon;base64,AAABAAEAAQEAAAEAIAAwAAAAFgAAACgAAAABAAAAAgAAAAEAIAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAP///////wAAAAA="
+        type="image/x-icon">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div id="splash" class="splash">
+        <div class="splash-content">
+            <div class="splash-text">CLICK TO ENTER</div>
+        </div>
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="bgAudio" loop></audio>
+
+    <!-- Audio Volume Control -->
+    <div class="audio-control" id="audioControl">
+        <button class="audio-btn" id="audioToggle" title="Toggle Audio">
+            <i class="fas fa-volume-xmark" id="audioIcon"></i>
+        </button>
+        <div class="volume-slider-container">
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <!-- Background Video -->
+    <div class="background-container">
+        <video id="bgVideo" autoplay muted loop playsinline>
+            <source src="assets/background.mp4" type="video/mp4">
+        </video>
+        <div class="background-overlay"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-pill">
+            <button class="nav-item active" data-target="home">Home</button>
+            <button class="nav-item" data-target="portfolio">Portfolio</button>
+            <button class="nav-item" data-target="contact">Contact</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+
+        <!-- HOME PAGE -->
+        <section id="home" class="page-section active">
+            <div class="profile-card">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="avatar-container">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                            alt="Avatar" class="avatar" id="avatar">
+                        <div class="avatar-ornament">🐌</div>
+                    </div>
+
+                    <div class="profile-info">
+                        <div class="username-row">
+                            <h1 class="username" id="username">VXCH</h1>
+                            <div class="badges" id="badges">
+                                <!-- Badges will be generated dynamically -->
+                            </div>
+                        </div>
+                        <p class="display-name" id="displayName">vxch</p>
+                        <p class="bio" id="bio"></p>
+                    </div>
+                </div>
+
+                <!-- Discord Widgets -->
+                <div class="discord-widgets">
+                    <!-- Discord Presence -->
+                    <div class="widget discord-presence" id="discordPresence">
+                        <div class="widget-avatar">
+                            <img src="assets/default-avatar.png" alt="Discord Avatar" id="discordAvatar">
+                            <span class="status-indicator online" id="statusIndicator"></span>
+                        </div>
+                        <div class="widget-info">
+                            <div class="widget-username" id="discordUsername">vxch.exe</div>
+                            <div class="widget-status" id="discordStatus">Loading status...</div>
+                        </div>
+                    </div>
+
+                    <!-- Discord Server Widget -->
+                    <div class="widget discord-server" id="discordServer">
+                        <div class="server-icon">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div class="server-info">
+                            <div class="server-name" id="serverName">Discord Server</div>
+                            <div class="server-stats">
+                                <span class="online-count" id="onlineCount">• 0 Online</span>
+                                <span class="member-count" id="memberCount">• 0 Members</span>
+                            </div>
+                        </div>
+                        <a href="#" class="join-btn" id="joinBtn" target="_blank">Join</a>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="social-links" id="socialLinks">
+                    <!-- Links generated by JS -->
+                </div>
+
+                <!-- Stats Footer -->
+                <div class="stats-footer">
+                    <div class="stat views">
+                        <i class="fas fa-eye"></i>
+                        <span id="viewCount">0</span>
+                    </div>
+                    <div class="stat location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="locationText">ALONE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO PAGE -->
+        <!-- PORTFOLIO PAGE -->
+        <section id="portfolio" class="page-section">
+            <div class="portfolio-grid">
+
+                <!-- Row 1: About & Skills -->
+                <div class="portfolio-row-top">
+
+                    <!-- About Me Card -->
+                    <div class="port-card about-card">
+                        <div class="card-header">
+                            <i class="fas fa-user-circle"></i>
+                            <h2>About Me</h2>
+                        </div>
+                        <div class="about-details">
+                            <p><strong>Name:</strong> <span>Nitin Negi</span></p>
+                            <p><strong>Experience:</strong> <span>1+ Year</span></p>
+                            <p><strong>Location:</strong> <span>India</span></p>
+                            <p><strong>Languages:</strong> <span>English, Hindi</span></p>
+                            <p><strong>Interests:</strong> <span>Coding, AI, Music, Design</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Skills Card -->
+                    <div class="port-card skills-card">
+                        <div class="card-header">
+                            <i class="fas fa-code"></i>
+                            <h2>Skills</h2>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-bar-item">
+                                <div class="sb-info"><span>Frontend Development</span><span>95%</span></div>
+                                <div class="sb-track">
+                                    <div class="sb-fill" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-item">
+                                <div class="sb-info"><span>Backend Development</span><span>90%</span></div>
+                                <div class="sb-track">
+                                    <div class="sb-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-item">
+                                <div class="sb-info"><span>UI/UX Design</span><span>85%</span></div>
+                                <div class="sb-track">
+                                    <div class="sb-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-item">
+                                <div class="sb-info"><span>Discord Bot Dev</span><span>100%</span></div>
+                                <div class="sb-track">
+                                    <div class="sb-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Row 2: Experience (Full Width) -->
+                <div class="port-card experience-card">
+                    <div class="card-header">
+                        <i class="fas fa-history"></i>
+                        <h2>Experience</h2>
+                    </div>
+                    <div class="experience-list">
+
+                        <!-- Project 1: AI Discord Bot -->
+                        <div class="exp-item">
+                            <div class="exp-dot"></div>
+                            <div class="exp-content">
+                                <h3>Advanced AI Discord Bot <i class="fas fa-robot"></i></h3>
+                                <p>Created a powerful Discord bot integrated with OpenAI API. Features include realistic
+                                    voice cloning, intelligent conversation handling, and automated moderation tools.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: This Website -->
+                        <div class="exp-item">
+                            <div class="exp-dot"></div>
+                            <div class="exp-content">
+                                <h3>Personal Portfolio Website <i class="fas fa-globe"></i></h3>
+                                <p>Built this modern, multi-page portfolio website using vanilla HTML/CSS/JS. Features a
+                                    custom black & cream theme, real-time view counter, and seamless page transitions.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact" class="page-section">
+            <div class="port-card contact-card-full">
+                <div class="contact-header">
+                    <h2 class="section-title">Contact Me</h2>
+                    <span class="status-badge">🟢 24/7 Available</span>
+                </div>
+
+                <div class="contact-body">
+                    <p class="contact-intro">Open to discussing new opportunities and potential collaborations.</p>
+
+                    <div class="contact-options">
+                        <a href="mailto:nitinnegi15063@gmail.com" class="contact-btn email icon-only-btn">
+                            <i class="fas fa-envelope"></i>
+                            <span>nitinnegi15063@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="cursor_effects.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

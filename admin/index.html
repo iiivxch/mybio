@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Profile Manager</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&family=Fira+Code:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>Profile Admin</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#profile" class="nav-item active" data-section="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <a href="#background" class="nav-item" data-section="background">
+                <i class="fas fa-image"></i>
+                <span>Background</span>
+            </a>
+            <a href="#cardAppearance" class="nav-item" data-section="cardAppearance">
+                <i class="fas fa-layer-group"></i>
+                <span>Card Style</span>
+            </a>
+            <a href="#audio" class="nav-item" data-section="audio">
+                <i class="fas fa-music"></i>
+                <span>Audio</span>
+            </a>
+            <a href="#social" class="nav-item" data-section="social">
+                <i class="fas fa-share-nodes"></i>
+                <span>Social Links</span>
+            </a>
+            <a href="#discord" class="nav-item" data-section="discord">
+                <i class="fab fa-discord"></i>
+                <span>Discord</span>
+            </a>
+            <a href="#badges" class="nav-item" data-section="badges">
+                <i class="fas fa-award"></i>
+                <span>Badges</span>
+            </a>
+            <a href="#theme" class="nav-item" data-section="theme">
+                <i class="fas fa-palette"></i>
+                <span>Theme</span>
+            </a>
+            <a href="#splash" class="nav-item" data-section="splash">
+                <i class="fas fa-door-open"></i>
+                <span>Splash Screen</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../index.html" class="preview-btn" target="_blank">
+                <i class="fas fa-eye"></i>
+                <span>Preview Profile</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 class="page-title">Dashboard</h1>
+            <div class="top-actions">
+                <button class="btn btn-secondary" id="hardResetBtn"
+                    style="background: rgba(255, 71, 87, 0.2); color: #ff4757; border-color: #ff4757;">
+                    <i class="fas fa-bomb"></i>
+                    Hard Reset
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="fas fa-undo"></i>
+                    Reset Legacy
+                </button>
+                <button class="btn btn-secondary" id="exportBtn">
+                    <i class="fas fa-download"></i>
+                    Export JSON
+                </button>
+                <button class="btn btn-primary" id="saveBtn">
+                    <i class="fas fa-save"></i>
+                    Save Changes
+                </button>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <!-- Profile Section -->
+            <section id="profile" class="settings-section active">
+                <h2 class="section-title">Profile Settings</h2>
+
+                <div class="settings-grid">
+                    <div class="setting-card avatar-card">
+                        <h3>Profile Picture</h3>
+                        <div class="avatar-preview">
+                            <img src="../assets/default-avatar.png" alt="Avatar" id="avatarPreview">
+                            <label class="avatar-upload">
+                                <input type="file" accept="image/*" id="avatarInput">
+                                <i class="fas fa-camera"></i>
+                            </label>
+                        </div>
+                        <input type="text" class="input-field" id="avatarUrl" placeholder="Or enter image URL...">
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Username</h3>
+                        <input type="text" class="input-field" id="username" placeholder="Your username" value="VXCH">
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Display Name</h3>
+                        <input type="text" class="input-field" id="displayName" placeholder="Display name" value="vxch">
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Bio</h3>
+                        <textarea class="input-field textarea" id="bio"
+                            placeholder="Write something about yourself...">Joined 4 months ago</textarea>
+                    </div>
+
+
+
+                    <div class="setting-card">
+                        <h3>Location Text</h3>
+                        <input type="text" class="input-field" id="locationText" placeholder="e.g. ALONE" value="ALONE">
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Font Style</h3>
+                        <div class="font-grid" id="fontGrid">
+                            <div class="font-item active" data-font="'Inter', sans-serif"
+                                style="font-family: 'Inter', sans-serif;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">Inter</span>
+                            </div>
+                            <!-- New Requested Fonts -->
+                            <div class="font-item" data-font="'Creepster', cursive"
+                                style="font-family: 'Creepster', cursive;">
+                                <span class="font-preview">Vp</span>
+                                <span class="font-name">Vampyre</span>
+                            </div>
+                            <div class="font-item" data-font="'Press Start 2P', cursive"
+                                style="font-family: 'Press Start 2P', cursive; font-size: 0.7em;">
+                                <span class="font-preview">8b</span>
+                                <span class="font-name">8-bit</span>
+                            </div>
+                            <div class="font-item" data-font="'Cinzel Decorative', cursive"
+                                style="font-family: 'Cinzel Decorative', cursive;">
+                                <span class="font-preview">Md</span>
+                                <span class="font-name">Medieval</span>
+                            </div>
+                            <div class="font-item" data-font="'M PLUS Rounded 1c', sans-serif"
+                                style="font-family: 'M PLUS Rounded 1c', sans-serif;">
+                                <span class="font-preview">Sk</span>
+                                <span class="font-name">Sakura</span>
+                            </div>
+                            <div class="font-item" data-font="'Varela Round', sans-serif"
+                                style="font-family: 'Varela Round', sans-serif;">
+                                <span class="font-preview">Jb</span>
+                                <span class="font-name">Jellybean</span>
+                            </div>
+                            <div class="font-item" data-font="'Righteous', cursive"
+                                style="font-family: 'Righteous', cursive;">
+                                <span class="font-preview">Tp</span>
+                                <span class="font-name">Tempo</span>
+                            </div>
+                            <!-- GGSans map to Inter (or specific if available, usually logic) -->
+                            <div class="font-item" data-font="'Inter', sans-serif"
+                                style="font-family: 'Inter', sans-serif;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">GGSans</span>
+                            </div>
+                            <div class="font-item" data-font="'Orbitron', sans-serif"
+                                style="font-family: 'Orbitron', sans-serif;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">Orbitron</span>
+                            </div>
+                            <div class="font-item" data-font="'Space Grotesk', sans-serif"
+                                style="font-family: 'Space Grotesk', sans-serif;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">Space Grotesk</span>
+                            </div>
+                            <div class="font-item" data-font="'JetBrains Mono', monospace"
+                                style="font-family: 'JetBrains Mono', monospace;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">JetBrains</span>
+                            </div>
+                            <div class="font-item" data-font="'Outfit', sans-serif"
+                                style="font-family: 'Outfit', sans-serif;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">Outfit</span>
+                            </div>
+                            <div class="font-item" data-font="'Poppins', sans-serif"
+                                style="font-family: 'Poppins', sans-serif;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">Poppins</span>
+                            </div>
+                            <div class="font-item" data-font="'Ubuntu', sans-serif"
+                                style="font-family: 'Ubuntu', sans-serif;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">Ubuntu</span>
+                            </div>
+                            <div class="font-item" data-font="'Fira Code', monospace"
+                                style="font-family: 'Fira Code', monospace;">
+                                <span class="font-preview">Gg</span>
+                                <span class="font-name">Fira Code</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="fontStyle" value="'Inter', sans-serif">
+                    </div>
+
+                    <!-- Username Styling -->
+                    <div class="setting-card">
+                        <h3>Username Effect</h3>
+                        <select class="input-field" id="usernameEffect">
+                            <option value="none">None</option>
+                            <option value="effect-neon">Neon</option>
+                            <option value="effect-pop">Pop</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Username Color</h3>
+                        <div class="color-picker-wrapper">
+                            <input type="color" class="color-picker" id="usernameColor" value="#ffffff">
+                            <span class="color-value">#ffffff</span>
+                        </div>
+                    </div>
+
+                    <!-- Cursor Effects -->
+                    <div class="setting-card full-width">
+                        <h3>Cursor Effects</h3>
+                        <select class="input-field" id="cursorEffect">
+                            <option value="none">None</option>
+                            <option value="snow">Snow</option>
+                            <option value="bubbles">Bubbles</option>
+                            <option value="fire">Fire</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Background Section -->
+            <section id="background" class="settings-section">
+                <h2 class="section-title">Background Settings</h2>
+
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Background Type</h3>
+                        <select class="input-field" id="bgType">
+                            <option value="video">Video</option>
+                            <option value="image">Image</option>
+                            <option value="color">Solid Color</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-card full-width" id="bgUploadCard">
+                        <h3>Upload Background</h3>
+                        <div class="file-upload-area" id="bgDropZone">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop or click to upload</p>
+                            <span class="file-types">MP4, WebM, JPG, PNG, GIF</span>
+                            <input type="file" accept="video/*,image/*" id="bgFileInput">
+                        </div>
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Or Enter URL</h3>
+                        <input type="text" class="input-field" id="bgUrl"
+                            placeholder="https://example.com/background.mp4">
+                    </div>
+
+                    <div class="setting-card" id="bgColorCard" style="display: none;">
+                        <h3>Background Color</h3>
+                        <input type="color" class="color-picker" id="bgColor" value="#0a0a0a">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card Appearance Section -->
+            <section id="cardAppearance" class="settings-section">
+                <h2 class="section-title">Card Appearance</h2>
+                <p class="section-description">Customize the profile card's look</p>
+
+                <div class="settings-grid">
+                    <div class="setting-card full-width">
+                        <h3>Card Transparency</h3>
+                        <p class="setting-hint">Adjust how transparent the card background is (0% = solid, 100% = fully
+                            transparent)</p>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="cardTransparency" min="0" max="100" value="55">
+                            <span class="slider-value" id="cardTransparencyValue">55%</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Text Mode</h3>
+                        <p class="setting-hint">Choose text color scheme</p>
+                        <select class="input-field" id="cardTextMode">
+                            <option value="auto">Auto (based on transparency)</option>
+                            <option value="dark">Dark Text</option>
+                            <option value="light">Light Text</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Card Blur</h3>
+                        <p class="setting-hint">Background blur amount</p>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="cardBlur" min="0" max="50" value="20">
+                            <span class="slider-value" id="cardBlurValue">20px</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Audio Section -->
+            <section id="audio" class="settings-section">
+                <h2 class="section-title">Audio Settings</h2>
+
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Enable Audio</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="audioEnabled" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Autoplay</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="audioAutoplay" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Upload Audio</h3>
+                        <div class="file-upload-area" id="audioDropZone">
+                            <i class="fas fa-music"></i>
+                            <p>Drag & drop or click to upload</p>
+                            <span class="file-types">MP3, WAV, OGG</span>
+                            <input type="file" accept="audio/*" id="audioFileInput">
+                        </div>
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Or Enter URL</h3>
+                        <input type="text" class="input-field" id="audioUrl"
+                            placeholder="https://example.com/music.mp3">
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Volume</h3>
+                        <input type="range" class="range-slider" id="audioVolume" min="0" max="100" value="50">
+                        <span class="range-value" id="volumeValue">50%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Links Section -->
+            <section id="social" class="settings-section">
+                <h2 class="section-title">Social Links</h2>
+
+                <div class="social-links-manager" id="socialLinksManager">
+                    <!-- Social links will be dynamically generated -->
+                </div>
+
+                <button class="btn btn-secondary add-social-btn" id="addSocialBtn">
+                    <i class="fas fa-plus"></i>
+                    Add New Link
+                </button>
+            </section>
+
+            <!-- Badges Section -->
+            <section id="badges" class="settings-section">
+                <h2 class="section-title">Profile Badges</h2>
+                <p class="section-description">Select preset badges or add your own custom badges</p>
+
+                <h3 style="margin-bottom: 12px; color: var(--text-secondary);">Preset Badges</h3>
+                <div class="badges-grid" id="badgesGrid">
+                    <!-- Preset badges will be dynamically generated -->
+                </div>
+
+                <h3 style="margin-top: 24px; margin-bottom: 12px; color: var(--text-secondary);">Custom Badges</h3>
+                <div class="custom-badges-container" id="customBadgesContainer">
+                    <!-- Custom badges will be displayed here -->
+                </div>
+
+                <div class="custom-badge-upload">
+                    <label for="customBadgeInput" class="btn btn-secondary" style="margin-top: 12px;">
+                        <i class="fas fa-plus"></i> Add Custom Badge
+                    </label>
+                    <input type="file" id="customBadgeInput" accept="image/*" style="display: none;">
+                </div>
+            </section>
+
+            <!-- Discord Section -->
+            <section id="discord" class="settings-section">
+                <h2 class="section-title">Discord Integration</h2>
+
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Show Discord Presence</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="showPresence" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Show Server Widget</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="showServer" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Discord User ID</h3>
+                        <input type="text" class="input-field" id="discordUserId" placeholder="Your Discord User ID"
+                            value="986665260750622780">
+                        <p class="help-text">Used for Lanyard presence. <a
+                                href="https://support.discord.com/hc/en-us/articles/206346498" target="_blank">How to
+                                find your ID</a></p>
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Discord Server ID</h3>
+                        <input type="text" class="input-field" id="discordServerId" placeholder="Your Discord Server ID"
+                            value="1259127565440778311">
+                        <p class="help-text">Server widget must be enabled in Discord settings.</p>
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Custom Invite URL</h3>
+                        <input type="text" class="input-field" id="discordInviteUrl"
+                            placeholder="https://discord.gg/your-invite">
+                        <p class="help-text">Overrides the widget invite link if set.</p>
+                    </div>
+
+                    <div style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                        <h4 style="margin-bottom: 10px; color: var(--accent-primary);">Manual Force Override</h4>
+                        <p class="help-text" style="margin-bottom: 10px;">Use these if the widget is broken.</p>
+
+                        <div class="setting-card full-width">
+                            <h3>Server Name Override</h3>
+                            <input type="text" class="input-field" id="discordServerName"
+                                placeholder="e.g. My Cool Server">
+                        </div>
+                        <div class="setting-card full-width">
+                            <h3>Online/Member Count Override</h3>
+                            <input type="text" class="input-field" id="discordMemberCount"
+                                placeholder="e.g. 500 Online">
+                        </div>
+                        <div class="setting-card full-width">
+                            <h3>Server Icon URL</h3>
+                            <input type="text" class="input-field" id="discordIconUrl" placeholder="Link to image...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Lanyard Setup Required</strong>
+                        <p>For Discord presence to work, join the <a href="https://discord.gg/lanyard"
+                                target="_blank">Lanyard Discord</a> with the account you want to track.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Badges Section -->
+            <section id="badges" class="settings-section">
+                <h2 class="section-title">Badges</h2>
+
+                <div class="badges-manager" id="badgesManager">
+                    <!-- Badges will be dynamically generated here -->
+                </div>
+
+                <button class="btn btn-secondary add-social-btn" id="addBadgeBtn">
+                    <i class="fas fa-plus"></i>
+                    Add Custom Badge
+                </button>
+            </section>
+
+            <!-- Theme Section -->
+            <section id="theme" class="settings-section">
+                <h2 class="section-title">Theme Settings</h2>
+
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Accent Color</h3>
+                        <div class="color-input-group">
+                            <input type="color" class="color-picker" id="accentColor" value="#00ff88">
+                            <input type="text" class="input-field" id="accentColorText" value="#00ff88">
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Card Background</h3>
+                        <div class="color-input-group">
+                            <input type="color" class="color-picker" id="cardBgColor" value="#000000">
+                            <input type="text" class="input-field" id="cardBgOpacity" placeholder="Opacity (0-1)"
+                                value="0.78">
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Card Blur</h3>
+                        <input type="range" class="range-slider" id="cardBlur" min="0" max="30" value="15">
+                        <span class="range-value" id="blurValue">15px</span>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Border Radius</h3>
+                        <input type="range" class="range-slider" id="borderRadius" min="0" max="40" value="20">
+                        <span class="range-value" id="radiusValue">20px</span>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Text Color</h3>
+                        <input type="color" class="color-picker" id="textColor" value="#ffffff">
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Secondary Text</h3>
+                        <input type="color" class="color-picker" id="secondaryTextColor" value="#a0a0a0">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Splash Section -->
+            <section id="splash" class="settings-section">
+                <h2 class="section-title">Splash Screen</h2>
+
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Enable Splash</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="splashEnabled" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Main Text</h3>
+                        <input type="text" class="input-field" id="splashText" placeholder="CLICK TO ENTER"
+                            value="CLICK TO ENTER">
+                    </div>
+
+                    <div class="setting-card full-width">
+                        <h3>Subtitle</h3>
+                        <input type="text" class="input-field" id="splashSubtitle" placeholder="🔊 Audio will play"
+                            value="🔊 Audio will play">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section id="stats" class="settings-section">
+                <h2 class="section-title">Stats & Footer</h2>
+
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h3>Show View Counter</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="showViews" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Location Text</h3>
+                        <input type="text" class="input-field" id="locationText" placeholder="Location" value="ALONE">
+                    </div>
+
+                    <div class="setting-card">
+                        <h3>Location Emoji</h3>
+                        <input type="text" class="input-field" id="locationEmoji" placeholder="Emoji" value="😔">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Settings saved!</span>
+    </div>
+
+    <!-- Add Social Modal -->
+    <div class="modal" id="socialModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Social Link</h3>
+                <button class="modal-close" id="closeSocialModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="platform-grid" id="platformGrid">
+                    <!-- Platforms will be generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Badge Modal -->
+    <div class="modal" id="badgeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Custom Badge</h3>
+                <button class="modal-close" id="closeBadgeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-card full-width">
+                    <h3>Badge Name (Tooltip)</h3>
+                    <input type="text" class="input-field" id="newBadgeName" placeholder="e.g. Moderator">
+                </div>
+                <div class="setting-card full-width">
+                    <h3>Upload Icon</h3>
+                    <div class="file-upload-area" id="badgeDropZone">
+                        <i class="fas fa-image"></i>
+                        <p>Upload emoji/icon</p>
+                        <input type="file" accept="image/*" id="badgeFileInput">
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-primary full-width" id="saveNewBadgeBtn">Add Badge</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
