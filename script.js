@@ -36,6 +36,7 @@ const elements = {
     audio: document.getElementById('bgAudio'),
     audioToggle: document.getElementById('audioToggle'),
     audioIcon: document.getElementById('audioIcon'),
+    audioControl: document.getElementById('audioControl'), // Added container
     volumeSlider: document.getElementById('volumeSlider'),
 
     // Profile
@@ -76,6 +77,11 @@ function initSplash() {
 
     elements.splash.addEventListener('click', () => {
         elements.splash.classList.add('hidden');
+
+        // Show Audio Control
+        if (elements.audioControl) {
+            elements.audioControl.classList.add('visible');
+        }
 
         // Start audio using config URL
         // Start audio from config
@@ -855,26 +861,38 @@ function showLiveSyncIndicator(message = '✓ Live Updated') {
 // ------------------------------------------------------------
 // View Counter (External API for Netlify Persistence)
 // ------------------------------------------------------------
+// ------------------------------------------------------------
+// View Counter (Alternative API)
+// ------------------------------------------------------------
 function initViewCounter() {
     const viewElement = document.getElementById('viewCount');
     if (!viewElement) return;
 
-    // Use a unique namespace based on the project domain or username to avoid collisions
-    const NAMESPACE = 'frshguns.lol-vxch';
+    const NAMESPACE = 'frshguns.lol';
     const KEY = 'visits';
 
-    // 1. Hit the counter (Increment)
-    fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`)
-        .then(res => res.json())
+    // Using counterapi.dev which is a free alternative
+    fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/up`)
+        .then(res => {
+            if (!res.ok) throw new Error('API Error');
+            return res.json();
+        })
         .then(data => {
-            viewElement.textContent = data.value;
+            viewElement.textContent = data.count; // Note: 'count' not 'value'
         })
         .catch(() => {
-            // Fallback: Just get the value if hit fails (or rate limited)
-            fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`)
-                .then(res => res.json())
-                .then(data => { viewElement.textContent = data.value; })
-                .catch(err => console.error('View counter failed:', err));
+            // Fallback: Read only (or Just show a default if blocked)
+            fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}`)
+                .then(res => {
+                    if (!res.ok) throw new Error('API Error');
+                    return res.json();
+                })
+                .then(data => { viewElement.textContent = data.count; })
+                .catch(err => {
+                    // Likely blocked by AdBlocker
+                    console.log('View counter blocked by client extension.');
+                    viewElement.textContent = '100+'; // Graceful fallback
+                });
         });
 }
 
